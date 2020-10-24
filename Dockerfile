@@ -6,4 +6,5 @@ RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 COPY ./entrypoint.sh /root/entrypoint.sh
 RUN chmod +x /root/entrypoint.sh
 
-CMD ["/root/entrypoint.sh", "apache2-foreground"]
+ENTRYPOINT ["/root/entrypoint.sh"]
+CMD ["apache2-foreground"]

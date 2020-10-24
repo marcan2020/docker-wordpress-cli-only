@@ -1,6 +1,12 @@
 #!/bin/bash
-wp core download --allow-root
+set -e
 
+# Download WordPress
+if [ ! -f wp-load.php ]; then
+  wp core download --allow-root
+fi
+
+# Generate WordPress config
 if [ ! -f wp-config.php ]; then
   wp config create \
     --dbname="${DATABASE}" \
@@ -12,7 +18,7 @@ if [ ! -f wp-config.php ]; then
     --allow-root
 fi
 
-set -e
+# Install WordPress
 if ! $(wp core is-installed --allow-root); then
   wp core install \
     --url="${WORDPRESS_URL}" \
